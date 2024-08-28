@@ -18,8 +18,12 @@
         <div v-else class="image-container">
           <img :src="imageData.fileBlob" alt="Uploaded image" class="uploaded-image" />
           <div class="image-actions">
-            <button @click.stop="clearImage">Remove</button>
-            <button @click.stop="openModal">Enlarge</button>
+            <button @click.stop="clearImage">
+              <img src="src/assets/icon/trash.svg" alt="Remove" class="icon"/>
+            </button>
+            <button @click.stop="openModal">
+              <img src="src/assets/icon/expand.svg" alt="expand" class="icon"/>
+            </button>
           </div>
         </div>
       </div>
@@ -133,26 +137,29 @@ const closeModal = () => {
 .uploaded-image {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: cover !important;
 }
 
 .image-actions {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 0;
+  right: 0;
+  padding:0 0 0 10px;
+  border-radius:0 0 0 20px;
+  box-shadow:0 2px 2px #000;
   display: flex;
-  gap: 5px;
+  gap: 2px;
+  background:#fff;
 }
 
 .image-actions button {
-  background-color: #fff;
-  border: 1px solid #ccc;
-  padding: 5px;
+  background : none;
+  border: none;
+  padding: 2px;
   cursor: pointer;
   font-size: 12px;
 }
 
-/* Hide file input */
 .hidden-file-input {
   position: absolute;
   width: 0;
@@ -161,7 +168,6 @@ const closeModal = () => {
   pointer-events: none;
 }
 
-/* Modal style */
 .modal {
   position: fixed;
   top: 0;
@@ -172,10 +178,20 @@ const closeModal = () => {
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 1000;
 }
 
 .modal-image {
   max-width: 90%;
   max-height: 90%;
+}
+
+.modal-visible .image-upload-container {
+  pointer-events: none;
+}
+
+.icon{
+  width:25px;
+  height:25px;
 }
 </style>
